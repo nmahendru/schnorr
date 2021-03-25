@@ -52,6 +52,8 @@ mod tests {
         let m = &[1, 1, 1, 1];
         let sig = sign_schnorr(&x, m);
         let p = Secp256k1Point::generator().scalar_mul(&x.get_element());
+
         assert!(verify_schnorr(&p, m, &sig));
+        assert!(!verify_schnorr(&p, &[1, 2, 3, 4], &sig));
     }
 }
